@@ -24,10 +24,6 @@ class Main extends CI_Controller {
 
 
 
-
-
-	//Metode za pozivanje view-a
-
 	public function show_rooms(){
 
 		$this->load->view('rooms');
@@ -111,7 +107,6 @@ $this->load->view('admin');
 			
 			if(!$this->do_upload()){
 
-
 			$data['hotel_stanje']="<p>Error at uploading hotel picture. Check type and size</p>";
 			$this->load->view('moderator',$data);
 			}
@@ -124,20 +119,6 @@ $this->load->view('admin');
 			// $this->do_upload();
 		
 			$this->load->view('moderator',$data);
-
-				$data['hotel_stanje']="<p>Error at uploading hotel picture. Check type and size</p>";
-				$this->load->view('moderator',$data);
-			}
-			else{
-				$data['hotel_stanje']="<p>Succesfully added hotel, you should add some pictres to hotel too.<br></p>";
-				$this->load->model('hotel_model');
-				$this->hotel_model->unesi_hotel_ceo($this->input->post('hotel_name'),$this->input->post('hotel_text'),$this->session->userdata['id_usera']);
-
-				$data['svi_hoteli_od_usera']=$this->hotel_model->svi_hoteli_po_id($this->session->userdata['id_usera']);
-				// $this->do_upload();
-		
-				$this->load->view('moderator',$data);
-
 	    	}
 		}
 		else{
